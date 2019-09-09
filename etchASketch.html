@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Etch-a-Sketch</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    </head>
+    <style>
+        body
+        {
+            margin:0;
+            padding:0;
+        }
+        #container
+        {
+            background: lightgray;
+            display: grid;
+            width: 100vw;
+            height: auto;
+            /*width: 500px; //for testing
+            height: 500px;*/ 
+            max-width: 1000px;
+            max-height: max-content;
+            margin: 0 auto;
+        }
+        .squares
+        {
+            /*
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            
+            height: 2.5rem;
+            width: 2.5rem;
+            */
+            width: 100%;
+            padding-top: 100%;
+            transition: all 0.3s linear;
+            grid-column: auto;
+            /*background-color: black;*/
+        }
+        /*.squares:hover
+        {
+            background-color: red;
+            width: 2.5rem;
+            height: 2.5rem;
+        }*/
+    </style>
+    <body>
+        <div id="container">
+        </div>
+        <button>Clear</button>
+    </body>
+    <script>
+            var grid = document.getElementById('container');
+            let clear = document.querySelector('button');
+            //let square = `<div class="squares" onmouseover="this.style.background='black'";>` + '</div>';
+            let square = `<div class="squares";>` + '</div>';
+            function createGrid($size) {
+                if ($size > 64) {
+                    $size = 64;
+                    container.setAttribute("style", "grid-template-columns: repeat("+$size+","+100/$size+"%); grid-template-rows: repeat("+$size+","+100/$size+"%);");
+                        for (var i = 0; i < $size*$size; i++) {
+                            container.innerHTML += square;
+                        }
+                } else {
+                    container.setAttribute("style", "grid-template-columns: repeat("+$size+","+100/$size+"%); grid-template-rows: repeat("+$size+","+100/$size+"%);");
+                        for (var i = 0; i < $size*$size; i++) {
+                            container.innerHTML += square;
+                        }
+                }
+            }
+            function clearGrid() {
+                var child = container.lastElementChild;
+                while(child) {
+                    container.removeChild(child);
+                    child = container.lastElementChild;
+                }
+                createGrid(32); // will modify later to get a different grid size
+                let squares = document.querySelectorAll('.squares');
+
+                squares.forEach(item => {
+                    item.addEventListener('mouseover', event => {
+                        item.style.cssText = "background-color: black";
+                    })
+                });
+            }
+            /*
+                for (i = 0; i < 16; i++) 
+                {
+                    var row = '<div>';
+                    
+                    for (j = 0; j < 16; j++)
+                    {
+                        row += square;
+                    }
+                    row += '</div>';
+                    
+                    //$grid.append(row);
+                    grid.innerHTML += row;
+                }
+            */
+            
+
+        createGrid(32); //initial grid
+
+        let squares = document.querySelectorAll('.squares');
+
+                squares.forEach(item => {
+                    item.addEventListener('mouseover', event => {
+                        item.style.cssText = "background-color: black";
+                    })
+                });
+
+        clear.addEventListener('click', function(){
+            clearGrid();
+        })
+            /*var div = document.createElement("div");*/
+            /*div.style.width = "100px";
+            div.style.height = "100px";
+            div.style.backgroundColor = "red";
+            document.getElementById("container").onmouseover = function() {mouseOver()};
+
+            function mouseOver()
+            {
+                div.style.width = "100px";
+                div.style.height = "100px";
+                div.style.backgroundColor = "red";
+                document.getElementById("container").appendChild(div);
+            }
+    
+            /*document.getElementById("container").appendChild(div);*/
+            /*document.body.appendChild(div);*/
+        </script>
+</html>
