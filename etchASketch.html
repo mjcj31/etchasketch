@@ -49,10 +49,12 @@
         <div id="container">
         </div>
         <button>Clear</button>
+        <input type="button" value="red" id="redButton">
     </body>
     <script>
             var grid = document.getElementById('container');
             let clear = document.querySelector('button');
+            let red = document.getElementById('redButton');
             //let square = `<div class="squares" onmouseover="this.style.background='black'";>` + '</div>';
             let square = `<div class="squares";>` + '</div>';
             function createGrid($size) {
@@ -81,6 +83,16 @@
                 squares.forEach(item => {
                     item.addEventListener('mouseover', event => {
                         item.style.cssText = "background-color: black";
+                    })
+                });
+            }
+            function redColor()
+            {
+                let squares = document.querySelectorAll('.squares');
+
+                squares.forEach(item => {
+                    item.addEventListener('mouseover', event => {
+                        item.style.cssText = "background-color: red";
                     })
                 });
             }
@@ -113,6 +125,9 @@
 
         clear.addEventListener('click', function(){
             clearGrid();
+        })
+        red.addEventListener('click', function(){
+            redColor();
         })
             /*var div = document.createElement("div");*/
             /*div.style.width = "100px";
