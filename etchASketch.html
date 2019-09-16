@@ -16,11 +16,40 @@
             display: grid;
             width: 100vw;
             height: auto;
-            /*width: 500px; //for testing
-            height: 500px;*/ 
+            /*width: 500px;*/ /*//for testing*/
+            /*height: 500px;*/ 
             max-width: 1000px;
             max-height: max-content;
             margin: 0 auto;
+            margin-top: 2em;
+        }
+        #buttons
+        {
+            text-align: center;
+            margin-top: 2em;
+        }
+        #redButton
+        {
+            border: none;
+            background-color: red;
+            width: 50px;
+            height: 50px;
+            color: white;
+        }
+        #yellowButton
+        {
+            border: none;
+            background-color: yellow;
+            width: 50px;
+            height: 50px;
+        }
+        #blueButton
+        {
+            border: none;
+            background-color: blue;
+            width: 50px;
+            height: 50px;
+            color: white;
         }
         .squares
         {
@@ -48,13 +77,19 @@
     <body>
         <div id="container">
         </div>
-        <button>Clear</button>
-        <input type="button" value="red" id="redButton">
+        <div id="buttons">
+            <button>Clear</button>
+            <input type="button" value="red" id="redButton">
+            <input type="button" value="yellow" id="yellowButton">
+            <input type="button" value="blue" id="blueButton">
+        </div>
     </body>
     <script>
             var grid = document.getElementById('container');
             let clear = document.querySelector('button');
             let red = document.getElementById('redButton');
+            let yellow = document.getElementById('yellowButton');
+            let blue = document.getElementById('blueButton');
             //let square = `<div class="squares" onmouseover="this.style.background='black'";>` + '</div>';
             let square = `<div class="squares";>` + '</div>';
             function createGrid($size) {
@@ -96,6 +131,26 @@
                     })
                 });
             }
+            function yellowColor()
+            {
+                let squares = document.querySelectorAll('.squares');
+
+                squares.forEach(item => {
+                    item.addEventListener('mouseover', event => {
+                        item.style.cssText = "background-color: yellow";
+                    })
+                });
+            }
+            function blueColor()
+            {
+                let squares = document.querySelectorAll('.squares');
+
+                squares.forEach(item => {
+                    item.addEventListener('mouseover', event => {
+                        item.style.cssText = "background-color: blue";
+                    })
+                });
+            }
             /*
                 for (i = 0; i < 16; i++) 
                 {
@@ -128,6 +183,12 @@
         })
         red.addEventListener('click', function(){
             redColor();
+        })
+        yellow.addEventListener('click', function(){
+            yellowColor();
+        })
+        blue.addEventListener('click', function(){
+            blueColor();
         })
             /*var div = document.createElement("div");*/
             /*div.style.width = "100px";
